@@ -1,4 +1,4 @@
-# rest-api-weather-plants
+# Rest API Weather Plants
 ## Task Description
 Create a REST API in Python to manage plants and query weather conditions for each plant:
 
