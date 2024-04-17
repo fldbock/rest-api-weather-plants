@@ -19,7 +19,13 @@ class Plant(db.Model):
         return Plant.query.session.get(Plant, id)
 
     def save(self):        
-        db.session.commit()
+        try:
+            db.session.commit()
+            return True
+        except Exception as e:
+            db.session.rollback()
+            db.session.flush()
+            return False
 
     def destroy(self):
         db.session.delete(self)

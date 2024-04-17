@@ -6,7 +6,7 @@ def register_routes(app, db):
 
     @app.route('/plants', methods=['GET'])
     def list_plants():
-        return PlantController().index()
+        return PlantController().read()
 
     @app.route('/plants', methods=['POST'])
     def create_plant():
@@ -25,9 +25,9 @@ def register_routes(app, db):
 
     @app.route('/plants/<int:plant_id>', methods=['DELETE'])
     def delete_plant(plant_id):
-        return PlantController().remove(plant_id)
+        return PlantController().delete(plant_id)
     
     @app.route('/plants/<int:plant_id>/weather', methods=['GET'])
     def get_plant_weather(plant_id):
         datetime = request.args.get("datetime")
-        return WeatherController().show(plant_id, datetime)
+        return WeatherController().read(plant_id, datetime)

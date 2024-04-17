@@ -2,22 +2,18 @@ from app.models.plant import Plant
 
 class PlantController:
 
-    def index(self):
+    def read(self):
         plants = Plant.query.all()
         serialized_plants = [plant.serialize() for plant in plants]
 
         return serialized_plants
 
-    def create(self, name, lat, long):
-        if name is None or lat is None or long is None:
-            return {'error': 'You should supply a valid name, lat and long'}, 404
+    def create(self, name, lat, long):          
         plant = Plant(name=name, lat=lat, long=long)
-        plant.save()
         
-        return plant.serialize(), 201
-    def update(self, id, name, lat, long):
-        if name is None or lat is None or long is None:
-            return {'error': 'You should supply a valid name, lat and long'}, 404
+        return self.save_or_404(plant)         
+        
+    def update(self, id, name, lat, long):            
         plant = Plant.get(id)
 
         if plant is None:
@@ -27,10 +23,9 @@ class PlantController:
         plant.lat = lat
         plant.long = long
         
-        plant.save()
-
-        return plant.serialize(), 200
-    def remove(self, id):
+        return self.save_or_404(plant)
+    
+    def delete(self, id):
         plant = Plant.get(id)
         
         if plant is None:
@@ -39,5 +34,11 @@ class PlantController:
         plant.destroy()
 
         return {'message': 'Plant deleted successfully'}, 200
+    
+    def save_or_404(self, plant):
+        if not plant.save():
+            return {'error': 'You should supply a valid name, lat and long'}, 404
+
+        return plant.serialize(), 200
 
 

@@ -75,3 +75,12 @@ Remove plant with id 1:
 Get the temperature and relative humidity for the plant with id 1 at datetime 2024-04-15T02:00:
 
     curl http://localhost:5000/plants/1/weather?datetime=2024-04-15T02:00
+
+## Deploy to Kubernetes using Helm
+
+Make sure minikube and kubectl are installed on your machine. Now you can start a minikube cluster where you can install your helm file.
+
+    minikube start
+    helm install -f weather-plants-helm/values.yaml weather-plant-helm ./weather-plants-helm/
+
+Follow the instructions in the output.

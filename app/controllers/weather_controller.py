@@ -4,11 +4,11 @@ from flask import jsonify
 
 class WeatherController:
 
-    def show(self, id, datetime):
+    def read(self, id, datetime):
         plant = Plant.query.session.get(Plant, id)
 
         if plant is None:
-            return False
+            return {'error': 'Plant not found'}, 404
         
         # Construct endpoint
         lat = plant.lat
@@ -26,4 +26,4 @@ class WeatherController:
 
             return {'temperature': json_data['temperature_2m'][index], 'humidity': json_data['relative_humidity_2m'][index]}, 200
         except requests.RequestException as e:
-            return jsonify({"error": str(e)}), 500
+            return {'error': 'External API does not have data for this datetime'}, 500

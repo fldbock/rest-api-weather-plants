@@ -7,7 +7,7 @@ db = SQLAlchemy()
 
 def create_app(env: str):
     app = Flask(__name__)
-
+    
     # Load the configuration
     app.config.from_object(LocalConfig)
 
@@ -16,6 +16,7 @@ def create_app(env: str):
 
     # Initialize DB
     db.init_app(app)
+    
 
     # Register routes
     from app.routes import register_routes
