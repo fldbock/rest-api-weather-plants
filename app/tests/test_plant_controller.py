@@ -28,7 +28,6 @@ class TestPlantController:
         with app.app_context():            
             plant_controller = PlantController()            
             plants = plant_controller.read()
-            print(plants)
             assert len(plants) == 2
             assert plants[0]["name"] == "Plant 1" and plants[1]["name"] == "Plant 2"
 

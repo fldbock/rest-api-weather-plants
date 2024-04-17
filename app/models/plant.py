@@ -29,7 +29,7 @@ class Plant(db.Model):
 
     def destroy(self):
         db.session.delete(self)
-        self.save()
+        db.session.commit(self)
 
     def serialize(self):
         return {

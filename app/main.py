@@ -16,14 +16,13 @@ def create_app(env: str):
 
     # Initialize DB
     db.init_app(app)
-    
 
     # Register routes
     from app.routes import register_routes
     register_routes(app, db)
 
     # Migrate the DB
-    migrate = Migrate(app, db)
+    Migrate(app, db)
 
     return app
 
