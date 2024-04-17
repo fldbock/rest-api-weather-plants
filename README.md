@@ -63,9 +63,9 @@ Run the following commands to create the docker image, and run it in a docker co
 Make sure minikube and kubectl are installed on your machine. Now you can start a minikube cluster where you can install your helm file.
 
     minikube start
-    helm install -f weather-plants-helm/values.yaml weather-plant-helm ./ weather-plants-helm/
+    helm install -f weather-plants-helm/values.yaml weather-plants-helm ./ weather-plants-helm/
 
-The output of your last command will give you new commands you should run to forward the port of your local machine to the minikube cluster.
+The output of your last command will give you new commands you should run to set up port forwarding and access the application.
 
 ## Querying The API Examples
 

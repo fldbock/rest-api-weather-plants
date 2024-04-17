@@ -1,4 +1,5 @@
 from app.main import db
+from sqlalchemy import exc
 
 class Plant(db.Model):
     __tablename__ = 'plants'
@@ -22,14 +23,14 @@ class Plant(db.Model):
         try:
             db.session.commit()
             return True
-        except Exception as e:
+        except exc.SQLAlchemyError:
             db.session.rollback()
             db.session.flush()
             return False
 
     def destroy(self):
         db.session.delete(self)
-        db.session.commit(self)
+        db.session.commit()
 
     def serialize(self):
         return {
