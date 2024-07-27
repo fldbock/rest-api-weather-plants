@@ -1,6 +1,5 @@
 **/__pycache__/
 notes.txt
-.venv
 .vscode
 instance
 migrations

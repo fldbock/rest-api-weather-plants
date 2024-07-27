@@ -1,16 +1,17 @@
-FROM python:3.8.10-slim-buster
+FROM python:3.12-slim-bookworm
 
 WORKDIR /weather-plants-docker
 
 COPY ./app ./app
 COPY ./public ./public
-COPY requirements.txt requirements.txt
+COPY ./Pipfile ./Pipfile
+COPY ./Pipfile.lock ./Pipfile.lock
 
-RUN pip install -r requirements.txt
+# Install pipvenv
+RUN pip install pipenv
+RUN pipenv install 
 
 ENV FLASK_APP="public.index"
-
-RUN pipenv install
 
 RUN flask db init &&\
     flask db migrate &&\
