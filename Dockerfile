@@ -9,6 +9,9 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 ENV FLASK_APP="public.index"
+
+RUN pipenv install
+
 RUN flask db init &&\
     flask db migrate &&\
     flask db upgrade

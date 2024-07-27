@@ -22,17 +22,12 @@ We use:
 
 ## Local Environment Setup (necessary to run the unit tests)
 
-Note: These instructions are written for ubuntu 20.04. 
+Note: These instructions are written for ubuntu 24.04. 
 
-For my local environment, I used a virtual environment called venv for dependency isolation. 
+For my local environment, I use pyenv, pipenv and direnv for dependency isolation. This allows me to seperate the python version, installed packages and environment variables set between all my repositories. I recommend installing them and then running the following commands in the root of this repo.
 
-    python3 venv .venv
-    source .venv/bin/activate
-
-
-To install the python3 libraries use:
-
-    pip3 install -r requirements.txt
+    pipenv install --dev
+    direnv allow
 
 
 To initialize the database:
@@ -52,18 +47,16 @@ For executing the unit tests run:
 
 ## Building The Docker Image (optional)
 
-Run the following commands to create the docker image, and run it in a docker container. This is optional because in the next step we create the kubernetes cluster which gets the dockerimage from dockerhub.
+Run the following commands to create the docker image.
 
     docker build --tag weather-plants-docker .
-
-    docker run -d -p 5000:5000 weather-plants-docker
 
 ## Deploy to Kubernetes using Helm
 
 Make sure minikube and kubectl are installed on your machine. Now you can start a minikube cluster where you can install your helm file.
 
     minikube start
-    helm install -f weather-plants-helm/values.yaml weather-plants-helm ./ weather-plants-helm/
+    helm install -f weather-plants-helm/values.yaml weather-plants-helm ./weather-plants-helm/
 
 The output of your last command will give you new commands you should run to set up port forwarding and access the application.
 
