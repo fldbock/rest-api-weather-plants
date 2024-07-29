@@ -9,12 +9,9 @@ COPY ./Pipfile.lock ./Pipfile.lock
 
 # Install pipvenv
 RUN pip install pipenv
-RUN pipenv install 
+RUN pipenv install --system
 
-ENV FLASK_APP="public.index"
+ENV FLASK_APP="public.index" \
+    APP_CONFIG_FILE=.env
 
-RUN flask db init &&\
-    flask db migrate &&\
-    flask db upgrade
-
-ENTRYPOINT ["flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT ["entrypoint.sh"]
