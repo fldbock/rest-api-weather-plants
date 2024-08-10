@@ -2,7 +2,7 @@ FROM python:3.12-slim-bookworm
 
 WORKDIR /weather-plants-docker
 
-COPY ./app ./app
+ADD ./app ./app
 COPY ./public ./public 
 COPY ./Pipfile ./Pipfile.lock ./
 
@@ -15,5 +15,3 @@ ENV FLASK_APP="public.index" \
 
 COPY ./entrypoint.sh ./
 RUN chmod u+x ./entrypoint.sh
-
-ENTRYPOINT ["./entrypoint.sh"]
