@@ -12,8 +12,8 @@ Create a REST API in Python to manage plants and query weather conditions for ea
 
 After finishing this initial project I added new requirements to implement more devops tools and techniques:
 
-- [] App should be deployed both locally and on the cloud (prod)
-- [] Database must be persistent and handle production loads
+- [ ] App should be deployed both locally and on the cloud (prod)
+- [ ] Database must be persistent and handle production loads
 
 ## Tech Stack
 We use:
