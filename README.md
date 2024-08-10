@@ -25,7 +25,7 @@ We use:
 * Kubernetes
 * Helm
 
-## Local Environment Setup (necessary to run the unit tests)
+## Local Environment Setup
 
 Note: These instructions are written for ubuntu 24.04. 
 
@@ -50,7 +50,7 @@ For executing the unit tests run:
 
     pytest
 
-## Building The Docker Image (optional)
+## Building The Docker Image
 
 Run the following commands to create the docker image.
 
